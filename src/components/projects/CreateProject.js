@@ -1,13 +1,16 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { createNote } from "../../store/actions/noteActions";
 
-export default class CreateProject extends Component {
+class CreateProject extends Component {
   state = {
     title: "",
     content: ""
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
+    this.props.createNote(this.state);
   };
   handleChange = e => {
     this.setState({
@@ -39,3 +42,13 @@ export default class CreateProject extends Component {
     );
   }
 }
+
+const mapDispatchToPros = dispatch => {
+  return {
+    createNote: note => dispatch(createNote(note))
+  };
+};
+export default connect(
+  null,
+  mapDispatchToPros
+)(CreateProject);

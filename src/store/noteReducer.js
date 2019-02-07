@@ -6,6 +6,10 @@ const initialState = {
   ]
 };
 const noteReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "CREATE_NOTE":
+      console.log(action.note);
+  }
   return state;
 };
 export default noteReducer;
