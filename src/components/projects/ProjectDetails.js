@@ -2,9 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
+import { Redirect } from "react-router-dom";
 
 const ProjectDetails = props => {
-  const { note } = props;
+  const { note, auth } = props;
+  if (!auth.uid) return <Redirect to="/singin" />;
   if (note) {
     return (
       <div className="container section project-details">
@@ -36,7 +38,8 @@ const mapStateToProps = (state, ownProps) => {
   const notes = state.firestore.data.notes;
   const note = notes ? notes[id] : null;
   return {
-    note: note
+    note: note,
+    auth: state.firebase.auth
   };
 };
 
