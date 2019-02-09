@@ -2,13 +2,15 @@ export const createNote = note => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     //make ascyn call to db
     const firestore = getFirestore();
+    const profile = getState().firebase.profile;
+    const id = getState().firebase.auth.uid;
     firestore
       .collection("notes")
       .add({
         ...note,
-        authorFirstName: "Andrzej",
-        authorLastName: "Kołubek",
-        authorId: 12345,
+        authorFirstName: profile.firstName,
+        authorLastName: profile.lastName,
+        authorId: id,
         createdAt: new Date()
       })
       .then(() => {

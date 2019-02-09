@@ -10,8 +10,8 @@ class CreateProject extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    // console.log(this.state);
     this.props.createNote(this.state);
+    this.props.history.push("/");
   };
   handleChange = e => {
     this.setState({
