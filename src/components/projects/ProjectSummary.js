@@ -1,4 +1,6 @@
 import React from "react";
+import moment from "moment";
+
 const ProjectSummary = ({ note }) => {
   return (
     <div className="card z-depth-0 project-summary">
@@ -7,7 +9,9 @@ const ProjectSummary = ({ note }) => {
         <p>
           Made by {note.authorFirstName} {note.authorLastName}
         </p>
-        <p className="grey-text">6th February 2019</p>
+        <p className="grey-text">
+          {moment(note.createdAt.toDate()).calendar()}
+        </p>
       </div>
     </div>
   );
