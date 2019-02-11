@@ -10,7 +10,9 @@ const ProjectSummary = ({ note }) => {
           Made by {note.authorFirstName} {note.authorLastName}
         </p>
         <p className="grey-text">
-          {moment(note.createdAt.toDate()).calendar()}
+          {moment(note.createdAt.toDate())
+            .locale("pl")
+            .format("llll")}
         </p>
       </div>
     </div>
